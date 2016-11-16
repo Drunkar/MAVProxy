@@ -284,7 +284,11 @@ class MPTile:
 					print("non-image response %s" % url)
 				continue
 			else:
-				img = resp.read()
+				try:
+					img = resp.read()
+				except Exception as e:
+					print(e.message)
+					img = ""
 
 			# see if its a blank/unavailable tile
 			md5 = hashlib.md5(img).hexdigest()
